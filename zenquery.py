@@ -8,31 +8,26 @@ creds = {
 
 zenpy_client = zenpy.Zenpy(**creds)
 
-ticket_search = zenpy_client.search(status='open', brand_id=2209347)
-open_ticket_ids=[]
-for ticket in ticket_search:
-    open_ticket_ids.append(ticket.id)
+def search_for(status):
+    search = zenpy_client.search(status=status, type='ticket', sort_by='created_at', brand_id=2209347)
+    return search
 
-#print(open_ticket_ids)
+def print_results(search, label):
+    print()
+    print(label + " tickets (" + str(search.count) + ")" )
+    print("Ticket | Status | Subject")
+    print("-----------------------------------------------")
+    for ticket in search:
+        print(str(ticket.id) + " | " + ticket.status + " | " + ticket.subject)
+    print()
 
-class Ticket(object):
-    """
-    A ticket with the attributes of
-    - number / name
-    - description / subject
-    - latest comment
-    """
+open_tickets_search = search_for("open")
+new_tickets_search = search_for("new")
+pending_tickets_search = search_for("pending")
+hold_tickets_search = search_for("hold")
 
-    def __init__(self, number):
-        self.id = number
-        self.subject = zenpy_client.tickets(id=number).subject
-        self.last_comment = zenpy_client.tickets.comments(ticket=number)[:][-1].body
+print_results(open_tickets_search, label="Open")
+print_results(new_tickets_search, label="New")
+print_results(pending_tickets_search, label="Pending")
+print_results(hold_tickets_search, label="Hold")
 
-open_tickets={}
-for id in open_ticket_ids:
-    open_tickets[id] = Ticket(id)
-
-print("Ticket | Subject")
-print("---------------------------------------------------")
-for ticket in open_tickets:
-    print(str(open_tickets[ticket].id) + "  | " + str(open_tickets[ticket].subject))
