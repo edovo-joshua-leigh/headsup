@@ -2,7 +2,7 @@ import zenpy
 
 creds = {
         'email' : 'joshua.leigh@edovo.com',
-        'token' : 'R1kSdprZ0k8obqp5ETVF9O2MOOYyrY4IxsriSOxV',
+        'token' : '',
         'subdomain' : 'edovo'
 }
 
