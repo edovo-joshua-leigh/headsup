@@ -16,5 +16,8 @@ deps: ## builds dependancies locally
 clean: ## cleans out local env
 	rm -rf env/
 
+serve: ## serves a rendered markdown version of zendesk info
+	. $(ENV)/bin/activate && grip test.md & while true; do python zenquery.py; sleep 30; done
+
 quick_demo: ## a quick demo of results returned
 	$(ENV)/bin/python zenquery.py
