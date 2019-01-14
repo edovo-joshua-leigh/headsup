@@ -1,5 +1,4 @@
 import zenpy
-import markdown
 
 creds = {
         'email' : 'joshua.leigh@edovo.com',
