@@ -2,7 +2,7 @@ import zenpy
 
 creds = {
         'email' : 'joshua.leigh@edovo.com',
-        'token' : '',
+        'token' : 'R1kSdprZ0k8obqp5ETVF9O2MOOYyrY4IxsriSOxV',
         'subdomain' : 'edovo'
 }
 
@@ -79,7 +79,7 @@ pending_tickets_table=make_dict(pending_tickets_search)
 hold_tickets_search = search_for("hold")
 hold_tickets_table=make_dict(hold_tickets_search)
 open_html_table=make_html_table("Open tickets", open_tickets_table)
-new_html_table=make_html_table("New tickets", open_tickets_table)
+new_html_table=make_html_table("New tickets", new_tickets_table)
 pending_html_table=make_html_table("Pending tickets", pending_tickets_table)
 hold_html_table=make_html_table("Hold tickets", hold_tickets_table)
 
