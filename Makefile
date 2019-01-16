@@ -9,7 +9,7 @@ help:
 	@echo
 
 deps: ## builds dependancies locally
-	python -m venv env
+	python3 -m venv env
 	$(PIP) install --upgrade pip setuptools
 	$(PIP) install --upgrade -r requirements/base.txt
 
