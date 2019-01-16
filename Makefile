@@ -2,6 +2,7 @@
 .DEFAULT_GOAL := help
 ENV := $(CURDIR)/env
 PIP := $(ENV)/bin/pip
+HEADPY := $(ENV)/bin/python
 
 help:
 	@printf "\033[0;33mWelcome the Headsup repo!\n"
@@ -16,7 +17,8 @@ deps: ## builds dependancies locally
 clean: ## cleans out local env
 	rm -rf env/
 
-serve: ## spins up a simple webserver at 8000 with zendesk tables
-	. $(ENV)/bin/activate && python -m http.server 8000 --bind 127.0.0.1 &\
-	 	. $(ENV)/bin/activate && while true; do python zenquery.py; sleep 30; done
+test_dashboard: ## assumes token in file token, served at localhost:8000
+	TOKEN=$(shell cat token) INDEX_PATH=$(CURDIR) \
+	$(HEADPY) zenquery.py
+	$(HEADPY) -m http.server 8000 --bind 127.0.0.1
 

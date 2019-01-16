@@ -68,7 +68,8 @@ def make_full_html_file(html_strings):
         html_text+=string
     html_text+="</html>"
 #    print(html_text)
-    with open('index.html', 'w') as w:
+    index_path=f"{os.environ['INDEX_PATH']}/index.html"
+    with open(index_path, 'w') as w:
             w.write(html_text)
 
 open_tickets_search = search_for("open")
