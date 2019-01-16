@@ -1,8 +1,9 @@
 import zenpy
+import os
 
 creds = {
         'email' : 'joshua.leigh@edovo.com',
-        'token' : '',
+        'token' : os.environ['TOKEN'],
         'subdomain' : 'edovo'
 }
 
